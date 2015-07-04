@@ -1,0 +1,30 @@
+1. 从键盘输入的字符串，最好定义成字符数组（scanf时有警告可以忽略之）；如果定义成字符指针，必须为该指针分配内存空间（用malloc），否则容易出现段错误。
+
+2. 用getchar从键盘获取输入时，会使得缓存中留下一个回车符，如果不清楚，将导致下一次从键盘获取输入时获取错误内容（即该回车符），可以在要获取输入前，加一条循环语句：while(getchar()!='\n') 来清除缓存。
+
+3. 一个简单的编程常识，字符用单引号，字符串用双引号。
+
+4. IP地址的处理，用函数inet_pton将点分十进制IP转换为长整形，inet_ntop将长整形转换为点分十进制，例如：
+inet_pton(AF_INET, IPaddr, (void *)&host); IPaddr为点分十进制地址，一般当做一个字符串存为字符数组，host为struct in_addr结构。
+inet_ntop(AF_INET, (void *)&host, IPvers, sizeof(IPvers)); 类型与上同。
+
+5. read、write函数的第二个参数一般是特定类型指针，编译时如果出现warning，按照其需求做一下强制类型转换即可。
+
+6. 变量类型定义的一点小细节：如char *val，val即为指针，值是地址，取其内容用*val；char val，为字符变量，其地址是&val。
+
+7. pthread_create函数的第三个参数——执行函数，类型是(void * (*)(void *))使用时，需加上强制类型转换。
+
+8. 函数参数传递，定义函数时其参数一般别设为指针（如char *val），稍不留意指针的指向就变了，指针的内容也就变了，容易造成参数出错，进而导致函数无法执行相关功能。
+
+9. gdb是一个强大的工具，熟练掌握将对程序的调试有很大的帮助。几个简单的调试命令，b设断点，r运行，c继续执行，n单步执行，display显示变量值或者指针。disass反汇编，显示汇编代码，格式为disass func（相应函数）。
+
+10. 套接字编程的地址细节：struct sockaddr_in定义了端点地址，包括IP和port，其中IP在其内嵌结构struct in_addr 中。
+
+11. AF_INET和PF_INET的区别，声明地址时用AF_INET（Address Family），创建套接字时用PF_INET（Protocol Family），此时套接字为POSIX套接字。此外，其值相等，故有时候可混用，无大碍。
+
+12. 对文件的几个操作函数：fopen, fwrite, fread, fseek, fclose, 其中fwrite, fread用于对文件的读写，fseek定位文件读取的位置。
+
+13. 从键盘输入完成回车后会在输入的字符串后面加一个字符'\n',字符串结束标志是'\0',也即每个字符串末尾都有一个'\0',要判断从键盘输入的是否为某个特定字符串，需要将末尾的'\n'去掉，方法是将该位赋值为'\0',例如：
+fgets(buf2, sizeof(buf2), stdin)；
+buf2len = strlen(buf2);        
+buf2[buf2len -1] = '\0';
