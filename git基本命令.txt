@@ -1,0 +1,32 @@
+1. Git global setup
+git config --global user.name "liuxiru(”√ªß√˚)"
+git config --global user.email/password "” œ‰/√‹¬Î"
+
+2. Git clone
+git clone existing_project£¨e.g. https://github.com/langya2014/linux-programming.git
+
+3. Create a new repository
+mkdir MAC_test
+cd MAC_test
+git init
+touch README.md		//note:create a file
+git add README.md	//add the file u want to push
+git commit -m "first commit"	//if having sevaral files to push, u can git add and commit in order, then excute following command.
+git remote add origin https://github.com/langya2014/linux-programming.git	//u can regard this line like origin = https://github.com/langya2014/linux-programming.git
+git push origin master		//the last step:push, u may need to input username and password
+
+4. Push an existing Git repository
+cd existing_git repo
+git remote add origin https://github.com/langya2014/linux-programming.git
+git push -u origin master
+
+5. Other command lines
+git status 	//check the status of current directory
+git log 	//review the log of git(add/commit)
+git pull 	//get an existing repo from remote to local dir
+git branch 	//review the branch
+git checkout
+git --help 	//for more informations
+
+
+
